@@ -4,9 +4,10 @@ import pandas as pd
 
 from calcula_hora import calcula_hora
 from calcula_salario import calcula_salario
+from seleciona_pasta import seleciona_pasta
 
-def carrega_base(caminho_pdf):
-    #caminho_pdf = input("Digite o caminho da pasta dos holerites: ")
+def carrega_base():
+    caminho_pdf = seleciona_pasta()
     salarios=[] 
     arquivos=[]
     meses=[] 
