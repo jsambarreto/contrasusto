@@ -2,9 +2,9 @@ import tabula
 from os import chdir, getcwd, listdir
 import pandas as pd
 
-from calcula_hora import calcula_hora
-from calcula_salario import calcula_salario
-from seleciona_pasta import seleciona_pasta
+from calculos.calcula_hora import calcula_hora
+from calculos.calcula_salario import calcula_salario
+from selecao_pasta.seleciona_pasta import seleciona_pasta
 
 def carrega_base():
     caminho_pdf = seleciona_pasta()
