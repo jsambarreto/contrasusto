@@ -1,3 +1,5 @@
+#!.\.env python3
+
 from tkinter import Tk, filedialog
 def seleciona_pasta():
     root = Tk() # pointing root to Tk() to use it as Tk() in program.

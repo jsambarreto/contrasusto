@@ -1,3 +1,5 @@
+#!.\.env python3
+
 import tabula
 from os import chdir, getcwd, listdir
 import pandas as pd
@@ -32,9 +34,16 @@ def carrega_base():
         meses.append(int(mes))
         anos.append(int(ano))
         try:
-            horas.append(int(splitado[2]))
+            try:
+                horas.append(int(splitado[2]))
+            
+            except Exception as e:
+                dfs3 = dfs[1]
+                colunas = dfs3.columns
+                aux = colunas[2].split(' ')
+                horas.append(int(aux[1]))
         except Exception as e:
-            dfs3 = dfs[1]
+            dfs3 = dfs[2]
             colunas = dfs3.columns
             aux = colunas[2].split(' ')
             horas.append(int(aux[1]))
@@ -48,7 +57,7 @@ def carrega_base():
         base_salario_ordenada = base_salario.sort_values(['Ano','Mes'],ascending=True)
         base_salario_ordenada['horas_aulas'] = base_salario_ordenada[['Ano','Mes']].apply(lambda x: calcula_hora(x.Mes, x.Ano), axis=1)
         base_salario_ordenada['horas_calculadas'] = base_salario_ordenada[['Hora', 'horas_aulas']].apply(lambda x: calcula_salario(x.Hora, x.horas_aulas), axis=1)
-        base_salario_ordenada['Diferenca']= base_salario_ordenada['horas_calculadas']-base_salario_ordenada['Salario']
+        base_salario_ordenada['Diferenca']= round(base_salario_ordenada['horas_calculadas']-base_salario_ordenada['Salario'],2)
         salario_ano= base_salario_ordenada[['Ano','Diferenca']].groupby('Ano').sum('Diferenca')
 
     return salario_ano

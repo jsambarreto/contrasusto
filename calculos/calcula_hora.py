@@ -1,3 +1,5 @@
+#!.\.env python3
+
 def calcula_hora(mes, ano):
   if (mes <=12 and ano==2018):
     horas_aula = 16.12
@@ -14,3 +16,4 @@ def calcula_hora(mes, ano):
   else:
     horas_aula=29.68
     return horas_aula
+  
